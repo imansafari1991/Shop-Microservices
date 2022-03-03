@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+
+  productdb:
+    container_name: productdb
+    environment:
+       - POSTGRES_USER=admin
+       - POSTGRES_PASSWORD=admin1234
+       - POSTGRES_DB=ProductDb
+    restart: always
+    ports:
+      - "5435:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+  pgadmin:
+    container_name: pgadmin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@aspnetrun.com
+      - PGADMIN_DEFAULT_PASSWORD=admin1234
+    restart: always
+    ports:
+      - "5070:80"
+    volumes:
+      - pgadmin_data:/root/.pgadmin
+  products.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "10000:80"
+    depends_on:
+      - productdb
