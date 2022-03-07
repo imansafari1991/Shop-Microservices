@@ -43,18 +43,22 @@ namespace Products.Domain.Categories
                 builder.Property(p => p.ThumbnailUrl).IsRequired().HasMaxLength(50).HasDefaultValue("https://via.placeholder.com/150x150.png");
                 builder.Property(p => p.CreationDateTime).IsRequired().HasDefaultValue(DateTime.UtcNow);
                 builder.Property(p => p.ModificationDateTime).IsRequired().HasDefaultValue(DateTime.UtcNow);
-                builder.HasData(SeedLargeData());
 
+                builder.HasData(SeedCategories());
             }
-            internal List<Category> SeedLargeData()
+
+            private List<Category> SeedCategories()
             {
                 var categories = new List<Category>();
-                using (StreamReader r = new StreamReader(@"SeedData/CategorySeed.json"))
+                string directoryPath = Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory);
+                string categorySeedPath = Path.Combine(directoryPath, @"SeedData/CategorySeed.json");
+                using (StreamReader r = new StreamReader(categorySeedPath))
                 {
                     string json = r.ReadToEnd();
-                    categories = JsonConvert.DeserializeObject<List<Category>>(json);
+                    categories = JsonSerializer.Deserialize<List<Category>>(json);
                 }
-                return categories;
+
+                return categories ?? new();
             }
         }
     }

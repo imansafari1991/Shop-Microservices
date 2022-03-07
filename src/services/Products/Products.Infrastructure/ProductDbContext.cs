@@ -21,8 +21,9 @@ namespace Products.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new Product.ProductConfiguration());
+            //Order is important. Because first we have insert into Category and then use categoryId when inserting Product
             modelBuilder.ApplyConfiguration(new Category.CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new Product.ProductConfiguration());
         }
     }
 }
