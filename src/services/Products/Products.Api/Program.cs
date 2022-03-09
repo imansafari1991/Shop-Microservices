@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Products.Api;
 using Products.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.AddServiceRegistery();
 
-
+builder.AddInfrastructureServices();
+builder.AddApplicationServices();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
