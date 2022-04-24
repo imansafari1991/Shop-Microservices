@@ -10,6 +10,7 @@ namespace Products.Domain.Products
     {
     
         Task<List<Product>> GetAllAsync();
+        Task<Tuple<List<Product>, int>> GetByFilterPagedAsync(ProductFilterPageReqDto request);
         Task<Product> GetAsync(int id);
         Task<Product> GetAsyncNoTracking(int id);
 

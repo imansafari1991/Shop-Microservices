@@ -13,6 +13,11 @@ services:
       - "5435:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+  basketdb:
+    container_name: basketdb
+    restart: always
+    ports:
+      - "6379:6379" 
   pgadmin:
     container_name: pgadmin
     environment:
@@ -30,3 +35,10 @@ services:
       - "10000:80"
     depends_on:
       - productdb
+
+  basket.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "10001:80"
+

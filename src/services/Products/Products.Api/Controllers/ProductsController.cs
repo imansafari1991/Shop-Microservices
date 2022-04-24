@@ -24,11 +24,11 @@ namespace Products.Api.Controllers
             _mediator = mediator;
         }
    
-        [HttpGet]
-        public async Task<List<ProductResDto>> Get()
-        {
-            return await _mediator.Send(new GetProductsListQuery());
-        }
+        //[HttpGet]
+        //public async Task<List<ProductResDto>> Get()
+        //{
+        //    return await _mediator.Send(new GetProductsListQuery());
+        //}
 
         // GET api/<ProductsController>/5
         [HttpGet("{id}")]

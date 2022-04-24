@@ -3,6 +3,8 @@ version: '3.4'
 services:
   productdb:
     image: postgres
+  basketdb:
+    image: redis:alpine
   pgadmin:
     image: dpage/pgadmin4
   products.api:
@@ -10,6 +12,12 @@ services:
     build:
       context: .
       dockerfile: src/services/Products/Products.Api/Dockerfile
+  basket.api:
+    image: ${DOCKER_REGISTRY-}basketapi
+    build:
+      context: .
+      dockerfile: src/services/Basket.API/Dockerfile
+
 volumes:
     postgres_data:
     pgadmin_data:

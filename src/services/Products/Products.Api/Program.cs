@@ -16,12 +16,9 @@ builder.AddInfrastructureServices();
 builder.AddApplicationServices();
 
 builder.Services.AddScoped<AppMutations>();
-
 builder.Services.AddScoped<AppQueries>();
-
-
-
 builder.Services.AddScoped<AppSchema>();
+
 builder.Services.AddGraphQL().AddSystemTextJson();
 
 var app = builder.Build();
@@ -33,8 +30,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseGraphQL<AppSchema>();
-
-
 app.UseGraphQLGraphiQL("/ui/graphql");
 app.UseAuthorization();
 
