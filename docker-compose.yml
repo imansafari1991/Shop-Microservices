@@ -3,6 +3,8 @@ version: '3.4'
 services:
   productdb:
     image: postgres
+  discountdb:
+    image: postgres
   basketdb:
     image: redis:alpine
   pgadmin:
@@ -18,6 +20,14 @@ services:
       context: .
       dockerfile: src/services/Basket.API/Dockerfile
 
+  discount.api:
+    image: ${DOCKER_REGISTRY-}discountapi
+    build:
+      context: .
+      dockerfile: src/services/Discounts/Discount.Api/Dockerfile
+
 volumes:
     postgres_data:
+    discount_postgres_data:
     pgadmin_data:
+
