@@ -13,6 +13,18 @@ services:
       - "5435:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+  discountdb:
+    container_name: discountdb
+    environment:
+       - POSTGRES_USER=admin
+       - POSTGRES_PASSWORD=admin1234
+       - POSTGRES_DB=DiscountDb
+    restart: always
+    ports:
+      - "5436:5432"
+    volumes:
+      - discount_postgres_data:/var/lib/postgresql/data/      
+
   basketdb:
     container_name: basketdb
     restart: always
@@ -41,4 +53,11 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "10001:80"
+
+
+  discount.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "10002:80"
 
