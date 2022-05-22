@@ -11,7 +11,7 @@ namespace Discount.Domain.Coupons
     {
         public int Id { get; set; }
         public int ProductId { get; set; }
-        public string ProductName { get; set; }
+        public string ProductTitle { get; set; }
         public DiscountType DiscountType { get; set; }
         public int Value { get; set; }
         public DateTime StartDate { get; set; }

@@ -14,7 +14,7 @@ namespace Discount.Domain.Coupons
         [Required]
         public int ProductId { get; set; }
         [MaxLength(300)]
-        public string ProductName { get; set; }
+        public string ProductTitle { get; set; }
         public DiscountType DiscountType { get; set; }
         public int Value { get; set; }
 
