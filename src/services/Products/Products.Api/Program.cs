@@ -14,7 +14,7 @@ builder.AddServiceRegistery();
 
 builder.AddInfrastructureServices();
 builder.AddApplicationServices();
-
+builder.AddMessagingConfiguration();
 builder.Services.AddScoped<AppMutations>();
 builder.Services.AddScoped<AppQueries>();
 builder.Services.AddScoped<AppSchema>();

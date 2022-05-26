@@ -8,6 +8,10 @@ using Products.Api;
 using Discount.Infrastructure;
 using Discount.Infrastructure.Domain.Coupons;
 using Microsoft.EntityFrameworkCore;
+using MassTransit;
+
+using Discount.Application.EventBusConsumers;
+using EventBus.Messages.Common;
 
 namespace Discount.Api
 {
@@ -46,5 +50,27 @@ namespace Discount.Api
            
             return builder.Services;
         }
+        public static IServiceCollection AddMessagingConfiguration(this WebApplicationBuilder builder)
+        {
+
+            builder.Services.AddMassTransit(
+               config =>
+               {
+                   config.AddConsumer<AddProductConsumer>();
+                   config.UsingRabbitMq((ctx, cfg) =>
+                   {
+                       cfg.Host(builder.Configuration["EventBusSettings:HostAddress"]);
+                       cfg.ReceiveEndpoint(EventBusConstants.AddProductQueue, c =>
+                       {
+                           c.ConfigureConsumer<AddProductConsumer>(ctx);
+                       });
+
+
+                   }
+                   );
+               });
+            return builder.Services;
+        }
+
     }
 }
