@@ -19,7 +19,9 @@
     <PackageReference Include="GraphQL" Version="4.7.1" />
 	  <PackageReference Include="GraphQL.Server.Transports.AspNetCore.SystemTextJson" Version="5.2.0" />
 	  <PackageReference Include="GraphQL.Server.Ui.GraphiQL" Version="5.2.0" />
-	  
+
+	  <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.3.1" />
+	  <PackageReference Include="MassTransit.RabbitMQ" Version="8.0.2" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.2">
       <PrivateAssets>all</PrivateAssets>
@@ -30,6 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\EventBus.Messages\EventBus.Messages.csproj" />
     <ProjectReference Include="..\Products.Application\Products.Application.csproj" />
     <ProjectReference Include="..\Products.Infrastructure\Products.Infrastructure.csproj" />
   </ItemGroup>

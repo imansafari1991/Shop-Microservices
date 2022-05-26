@@ -40,6 +40,13 @@ services:
       - "5070:80"
     volumes:
       - pgadmin_data:/root/.pgadmin
+  rabbitmq:
+    container_name: rabbitmq
+    restart: always
+    ports:
+        - "5672:5672"
+        - "15672:15672"
+      
   products.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development

@@ -9,6 +9,8 @@ services:
     image: redis:alpine
   pgadmin:
     image: dpage/pgadmin4
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
   products.api:
     image: ${DOCKER_REGISTRY-}productsapi
     build:
